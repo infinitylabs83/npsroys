@@ -380,9 +380,9 @@ input.spwd:focus{border-color:var(--yellow);}
             <div class="nps-desc" id="dd">NPS</div>
           </div>
           <div class="seg-bars">
-            <div class="seg-row"><div class="seg-name" style="color:#52A447">Promotores</div><div class="seg-track"><div class="seg-fill" id="bp" style="background:#52A447;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pp" style="color:#52A447">—</div><div class="seg-cnt" id="cp" style="color:#52A447">—</div></div></div>
-            <div class="seg-row"><div class="seg-name" style="color:#EF9F27">Neutros</div><div class="seg-track"><div class="seg-fill" id="bn" style="background:#EF9F27;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pn" style="color:#EF9F27">—</div><div class="seg-cnt" id="cn" style="color:#EF9F27">—</div></div></div>
-            <div class="seg-row"><div class="seg-name" style="color:#E24B4A">Detratores</div><div class="seg-track"><div class="seg-fill" id="bd" style="background:#E24B4A;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pd" style="color:#E24B4A">—</div><div class="seg-cnt" id="cd" style="color:#E24B4A">—</div></div></div>
+            <div class="seg-row"><div class="seg-name" style="color:#52A447">Promotores</div><div class="seg-track"><div class="seg-fill" id="bar-p" style="background:#52A447;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pct-p" style="color:#52A447">—</div><div class="seg-cnt" id="cnt-p" style="color:#52A447">—</div></div></div>
+            <div class="seg-row"><div class="seg-name" style="color:#EF9F27">Neutros</div><div class="seg-track"><div class="seg-fill" id="bar-n" style="background:#EF9F27;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pct-n" style="color:#EF9F27">—</div><div class="seg-cnt" id="cnt-n" style="color:#EF9F27">—</div></div></div>
+            <div class="seg-row"><div class="seg-name" style="color:#E24B4A">Detratores</div><div class="seg-track"><div class="seg-fill" id="bar-d" style="background:#E24B4A;width:0%"></div></div><div class="seg-r"><div class="seg-pct" id="pct-d" style="color:#E24B4A">—</div><div class="seg-cnt" id="cnt-d" style="color:#E24B4A">—</div></div></div>
           </div>
         </div>
         <div class="nps-formula">NPS = % Promotores (9–10) − % Detratores (0–6)</div>
@@ -396,15 +396,15 @@ input.spwd:focus{border-color:var(--yellow);}
       </div>
 
       <div class="charts">
-        <div class="cc"><div class="cc-title"><i class="fa-solid fa-chart-line"></i>NPS por semana</div><div class="ch-wrap"><canvas id="ct"></canvas></div></div>
-        <div class="cc"><div class="cc-title"><i class="fa-solid fa-chart-bar"></i>Notas (0–10)</div><div class="ch-wrap"><canvas id="cd"></canvas></div></div>
+        <div class="cc"><div class="cc-title"><i class="fa-solid fa-chart-line"></i>NPS por semana</div><div class="ch-wrap"><canvas id="chart-trend"></canvas></div></div>
+        <div class="cc"><div class="cc-title"><i class="fa-solid fa-chart-bar"></i>Notas (0–10)</div><div class="ch-wrap"><canvas id="chart-dist"></canvas></div></div>
       </div>
 
       <div class="dim-card">
         <div class="dc-title"><i class="fa-solid fa-sliders"></i>Avaliação por dimensão</div>
         <div class="dim-items">
-          <div class="di"><div class="di-label"><i class="fa-solid fa-burger" style="color:var(--yellow)"></i>Produto</div><div class="bar-t"><div class="bar-i" id="bip" style="width:0%"></div></div><div class="di-avg" id="avp">—</div><div class="di-sub" id="sbp">—</div></div>
-          <div class="di"><div class="di-label"><i class="fa-solid fa-user-tie" style="color:var(--blue)"></i>Atendimento</div><div class="bar-t"><div class="bar-i" id="bia" style="width:0%;background:var(--blue)"></div></div><div class="di-avg" id="ava">—</div><div class="di-sub" id="sba">—</div></div>
+          <div class="di"><div class="di-label"><i class="fa-solid fa-burger" style="color:var(--yellow)"></i>Produto</div><div class="bar-t"><div class="bar-i" id="bar-prod" style="width:0%"></div></div><div class="di-avg" id="avg-prod">—</div><div class="di-sub" id="sub-prod">—</div></div>
+          <div class="di"><div class="di-label"><i class="fa-solid fa-user-tie" style="color:var(--blue)"></i>Atendimento</div><div class="bar-t"><div class="bar-i" id="bar-atend" style="width:0%;background:var(--blue)"></div></div><div class="di-avg" id="avg-atend">—</div><div class="di-sub" id="sub-atend">—</div></div>
           
         </div>
       </div>
@@ -419,10 +419,48 @@ input.spwd:focus{border-color:var(--yellow);}
         <div id="d-coms"></div>
       </div>
 
+      <!-- QR CODES PANEL -->
+      <div id="qr-panel" style="display:none;">
+        <div style="background:var(--card);border-radius:15px;padding:16px;border:1px solid var(--border);margin-bottom:13px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;"><i class="fa-solid fa-circle-info" style="color:var(--red);margin-right:6px;font-size:10px;"></i>Como usar</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px;">Imprima os QR Codes e coloque em cada loja. O cliente escaneia e vai direto ao formulário com a loja pré-identificada.</p>
+          <div style="background:rgba(250,187,21,.08);border:1px solid rgba(250,187,21,.2);border-radius:9px;padding:10px 13px;font-size:12px;color:rgba(250,187,21,.9);">
+            <i class="fa-solid fa-lightbulb" style="margin-right:6px;"></i>Dica: coloque na mesa do balcão, na embalagem ou num totem na entrada.
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:13px;">
+          <div style="background:var(--card);border-radius:15px;padding:16px 12px;border:1px solid var(--border);text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:var(--yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;"><i class="fa-solid fa-bag-shopping" style="color:var(--red);margin-right:5px;"></i>Shopping da Ilha</div>
+            <div id="qr-ilha" style="display:inline-block;background:#fff;padding:8px;border-radius:8px;min-height:180px;min-width:180px;"></div>
+            <div id="url-ilha" style="font-size:9px;color:rgba(255,255,255,.2);margin-top:8px;word-break:break-all;"></div>
+            <button onclick="downloadQR('qr-ilha','roys_qr_shopping_da_ilha')" style="margin-top:12px;width:100%;height:38px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:Nunito,sans-serif;">
+              <i class="fa-solid fa-download" style="margin-right:6px;"></i>Baixar PNG
+            </button>
+          </div>
+          <div style="background:var(--card);border-radius:15px;padding:16px 12px;border:1px solid var(--border);text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:var(--yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;"><i class="fa-solid fa-store" style="color:var(--red);margin-right:5px;"></i>Rio Anil</div>
+            <div id="qr-anil" style="display:inline-block;background:#fff;padding:8px;border-radius:8px;min-height:180px;min-width:180px;"></div>
+            <div id="url-anil" style="font-size:9px;color:rgba(255,255,255,.2);margin-top:8px;word-break:break-all;"></div>
+            <button onclick="downloadQR('qr-anil','roys_qr_rio_anil')" style="margin-top:12px;width:100%;height:38px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:Nunito,sans-serif;">
+              <i class="fa-solid fa-download" style="margin-right:6px;"></i>Baixar PNG
+            </button>
+          </div>
+        </div>
+        <div style="background:var(--card);border-radius:15px;padding:14px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;"><i class="fa-solid fa-link" style="color:var(--red);margin-right:6px;font-size:10px;"></i>URL base</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Se hospedar com outro nome ou domínio, atualize aqui.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input id="base-url" type="text" style="flex:1;min-width:180px;height:38px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:7px;padding:0 12px;font-size:12px;font-family:Nunito,sans-serif;color:#fff;outline:none;" placeholder="https://seusite.github.io/index.html">
+            <button onclick="regenerateQRs()" style="height:38px;background:var(--red);color:#fff;border:none;border-radius:7px;padding:0 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:Nunito,sans-serif;white-space:nowrap;"><i class="fa-solid fa-rotate-right" style="margin-right:5px;"></i>Atualizar</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
+<script>
 <script>
 const SB = 'https://lvlfmmumowavhmuoeqzy.supabase.co';
 const AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2bGZtbXVtb3dhdmhtdW9lcXp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3MjcyOTIsImV4cCI6MjA5NTMwMzI5Mn0.nQoEX7JSCOlPpbkABZ-wYlTQ0I8PRzjl1TtpL48xrqE';
@@ -449,8 +487,17 @@ function show(id){
     if(s==='sl') el.style.display=s===id?'flex':'none';
     else el.style.display=s===id?'block':'none';
   });
+  // admin footer: hide when on dashboard
+  const af=document.getElementById('admin-footer');
+  if(af) af.style.display=id==='sd'?'none':'block';
 }
-function goForm(){
+function goForm(){show('sf');}
+function goLogin(){show('sl');document.getElementById('pwd').value='';document.getElementById('lerr').textContent='';}
+function tryLogin(){
+  if(document.getElementById('pwd').value===getPwd()){show('sd');loadDash('rede');}
+  else document.getElementById('lerr').textContent='Senha incorreta.';
+}
+
 // --- MÁSCARA TELEFONE ---
 function maskPhone(el){
   let v = el.value.replace(/\D/g,'').slice(0,11);
@@ -462,70 +509,7 @@ function maskPhone(el){
   el.value = v.replace(/-$/,'');
 }
 
-// Verifica se URL tem #admin para acesso direto ao painel
-if(window.location.hash === '#admin'){
-  show('sl');
-} else {
-  show('sf');
-}
-// Limpa o hash da URL sem recarregar
-if(window.location.hash){
-  history.replaceState(null, '', window.location.pathname + window.location.search);
-}
-// --- QR CODES ---
-function loadQRLib(cb){
-  if(window.QRCode){cb();return;}
-  const s=document.createElement('script');
-  s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-  s.onload=cb;
-  document.head.appendChild(s);
-}
-
-function getBaseURL(){
-  const inp=document.getElementById('base-url');
-  return inp&&inp.value.trim()?inp.value.trim():window.location.href.split('?')[0].split('#')[0];
-}
-
-function generateQR(canvasId, urlId, param){
-  const base=getBaseURL();
-  const url=base+'?loja='+param;
-  document.getElementById(urlId).textContent=url;
-  const canvas=document.getElementById(canvasId);
-  canvas.width=240;canvas.height=240;
-  new QRCode(canvas,{text:url,width:240,height:240,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.H});
-}
-
-function generateAllQRs(){
-  loadQRLib(()=>{
-    generateQR('qr-ilha','url-ilha','shopping-ilha');
-    generateQR('qr-anil','url-anil','rio-anil');
-  });
-}
-
-function regenerateQRs(){
-  document.getElementById('qr-ilha').innerHTML='';
-  document.getElementById('qr-anil').innerHTML='';
-  generateAllQRs();
-}
-
-function downloadQR(canvasId,filename){
-  const canvas=document.getElementById(canvasId);
-  // find the inner canvas generated by QRCode lib
-  const inner=canvas.querySelector?canvas.querySelector('canvas'):canvas;
-  const c=inner||canvas;
-  const link=document.createElement('a');
-  link.download=filename+'.png';
-  link.href=c.toDataURL('image/png');
-  link.click();
-}
-}
-function goLogin(){show('sl');document.getElementById('pwd').value='';document.getElementById('lerr').textContent='';}
-function tryLogin(){
-  if(document.getElementById('pwd').value===getPwd()){show('sd');loadDash('rede');}
-  else document.getElementById('lerr').textContent='Senha incorreta.';
-}
-
-// --- FORM ---
+// --- FORM STATE ---
 const st={unidade:null,nps:null,produto:null,atend:null};
 const msgs=[
   ['😞 Que pena. Queremos melhorar muito.','#E24B4A'],
@@ -540,7 +524,12 @@ const msgs=[
   ['😁 Incrível! Você é nosso promotor 🌟','#52A447'],
   ['🤩 PERFEITO! Muito obrigado de coração!','#FABB15'],
 ];
-function upProg(){let p=5;if(st.unidade)p+=20;if(st.nps!==null)p+=35;if(st.produto)p+=20;if(st.atend)p+=20;document.getElementById('prog').style.width=Math.min(p,100)+'%';}
+function upProg(){
+  let p=5;
+  if(st.unidade)p+=20;if(st.nps!==null)p+=35;
+  if(st.produto)p+=20;if(st.atend)p+=20;
+  document.getElementById('prog').style.width=Math.min(p,100)+'%';
+}
 function chkSub(){document.getElementById('sub-btn').disabled=!(st.unidade&&st.nps!==null);}
 function pickU(el,v){document.querySelectorAll('.u-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');st.unidade=v;upProg();chkSub();}
 function pickN(el,v){
@@ -552,11 +541,22 @@ function pickN(el,v){
 function pickD(k,el,v){el.parentElement.querySelectorAll('.esc-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');st[k]=v;upProg();}
 
 async function submitForm(){
-  const payload={unidade:st.unidade,nps:st.nps,produto:st.produto,atend:st.atend,obs:document.getElementById('obs').value||null,nome:document.getElementById('nome').value||null,whatsapp:document.getElementById('wpp').value||null};
+  const payload={
+    unidade:st.unidade, nps:st.nps,
+    produto:st.produto, atend:st.atend,
+    obs:document.getElementById('obs').value||null,
+    nome:document.getElementById('nome').value||null,
+    whatsapp:document.getElementById('wpp').value.replace(/\D/g,'')||null
+  };
   document.getElementById('sub-btn').disabled=true;
   document.getElementById('sub-btn').textContent='Enviando...';
   try{
-    await fetch(SB+'/rest/v1/nps_respostas',{method:'POST',headers:{'apikey':AK,'Authorization':'Bearer '+AK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(payload)});
+    const r=await fetch(SB+'/rest/v1/nps_respostas',{
+      method:'POST',
+      headers:{'apikey':AK,'Authorization':'Bearer '+AK,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(payload)
+    });
+    if(!r.ok) console.error('Supabase error:',r.status);
   }catch(e){console.error(e);}
   document.getElementById('prog').style.width='100%';
   document.getElementById('fm').style.display='none';
@@ -569,55 +569,141 @@ async function submitForm(){
 
 // --- DASHBOARD ---
 async function fetchRows(tab){
-  let url=SB+'/rest/v1/nps_respostas?select=*&order=created_at.desc&limit=500';
-  if(tab!=='rede')url+='&unidade=eq.'+encodeURIComponent(tab);
-  const r=await fetch(url,{headers:{'apikey':AK,'Authorization':'Bearer '+AK}});
-  if(!r.ok)throw new Error('HTTP '+r.status);
+  let url=SB+'/rest/v1/nps_respostas?select=*&order=created_at.desc&limit=1000';
+  if(tab && tab!=='rede'){
+    url+='&unidade=eq.'+encodeURIComponent(tab);
+  }
+  const r=await fetch(url,{
+    headers:{'apikey':AK,'Authorization':'Bearer '+AK,'Content-Type':'application/json'}
+  });
+  if(!r.ok){
+    const txt=await r.text().catch(()=>'');
+    throw new Error('HTTP '+r.status+(txt?' — '+txt:''));
+  }
   return r.json();
 }
-function calcNPS(rows){if(!rows.length)return 0;const p=rows.filter(r=>r.nps>=9).length,d=rows.filter(r=>r.nps<=6).length;return Math.round((p/rows.length-d/rows.length)*100);}
-function avg(rows,f){const v=rows.filter(r=>r[f]!=null);return v.length?v.reduce((s,r)=>s+r[f],0)/v.length:null;}
-function npsLbl(n){if(n>=75)return['EXCELENTE','#52A447'];if(n>=50)return['MUITO BOM','#FABB15'];if(n>=0)return['BOM','#EF9F27'];return['CRÍTICO','#E24B4A'];}
-function byWeek(rows){const w={};rows.forEach(r=>{const d=new Date(r.created_at),m=new Date(d);m.setDate(d.getDate()-((d.getDay()+6)%7));const k=m.toISOString().slice(0,10);if(!w[k])w[k]=[];w[k].push(r);});return Object.entries(w).sort((a,b)=>a[0]>b[0]?1:-1).slice(-8);}
+
+function calcNPS(rows){
+  if(!rows.length)return 0;
+  const p=rows.filter(r=>r.nps>=9).length;
+  const d=rows.filter(r=>r.nps<=6).length;
+  return Math.round((p/rows.length-d/rows.length)*100);
+}
+function avg(rows,f){
+  const v=rows.filter(r=>r[f]!=null);
+  return v.length ? v.reduce((s,r)=>s+r[f],0)/v.length : null;
+}
+function npsLbl(n){
+  if(n>=75)return['EXCELENTE','#52A447'];
+  if(n>=50)return['MUITO BOM','#FABB15'];
+  if(n>=0)return['BOM','#EF9F27'];
+  return['CRÍTICO','#E24B4A'];
+}
+function byWeek(rows){
+  const w={};
+  rows.forEach(r=>{
+    const d=new Date(r.created_at),m=new Date(d);
+    m.setDate(d.getDate()-((d.getDay()+6)%7));
+    const k=m.toISOString().slice(0,10);
+    if(!w[k])w[k]=[];w[k].push(r);
+  });
+  return Object.entries(w).sort((a,b)=>a[0]>b[0]?1:-1).slice(-8);
+}
 
 async function loadDash(tab){
   curTab=tab;
   document.getElementById('d-loading').style.display='block';
   document.getElementById('d-content').style.display='none';
   document.getElementById('d-err').style.display='none';
+  document.getElementById('qr-panel').style.display='none';
+
   try{
     const rows=await fetchRows(tab);
-    if(!rows.length){document.getElementById('d-loading').innerHTML='<i class="fa-solid fa-inbox" style="margin-right:8px"></i>Nenhuma resposta ainda.';return;}
+    if(!rows.length){
+      document.getElementById('d-loading').innerHTML='<i class="fa-solid fa-inbox" style="margin-right:8px"></i>Nenhuma resposta ainda para esta seleção.';
+      return;
+    }
     document.getElementById('d-loading').style.display='none';
     document.getElementById('d-content').style.display='block';
 
-    const total=rows.length,proms=rows.filter(r=>r.nps>=9).length,neus=rows.filter(r=>r.nps>=7&&r.nps<=8).length,dets=rows.filter(r=>r.nps<=6).length;
-    const nps=calcNPS(rows);const[lbl,col]=npsLbl(nps);
-    document.getElementById('dn').textContent=nps;document.getElementById('dn').style.color=col;
-    document.getElementById('dl').textContent=lbl;document.getElementById('dl').style.color=col;
-    document.getElementById('dd').textContent=tab==='rede'?'NPS da Rede':tab==='shopping-ilha'?'NPS · Shopping da Ilha':'NPS · Rio Anil';
-    const pp=Math.round(proms/total*100),np=Math.round(neus/total*100),dp=Math.round(dets/total*100);
-    ['p','n','d'].forEach((x,i)=>{const pct=[pp,np,dp][i];document.getElementById('b'+x).style.width=pct+'%';document.getElementById('p'+x).textContent=pct+'%';document.getElementById('c'+x).textContent=[proms,neus,dets][i]+' resp.';});
-    document.getElementById('mt').textContent=total;
+    const total=rows.length;
+    const proms=rows.filter(r=>r.nps>=9).length;
+    const neus=rows.filter(r=>r.nps>=7&&r.nps<=8).length;
+    const dets=rows.filter(r=>r.nps<=6).length;
+    const nps=calcNPS(rows);
+    const[lbl,col]=npsLbl(nps);
 
-    const avP=avg(rows,'produto'),avA=avg(rows,'atend');
+    // NPS hero
+    document.getElementById('dn').textContent=nps;
+    document.getElementById('dn').style.color=col;
+    document.getElementById('dl').textContent=lbl;
+    document.getElementById('dl').style.color=col;
+    document.getElementById('dd').textContent=tab==='rede'?'NPS da Rede':tab==='shopping-ilha'?'NPS · Shopping da Ilha':'NPS · Rio Anil';
+
+    const pp=Math.round(proms/total*100);
+    const np=Math.round(neus/total*100);
+    const dp=Math.round(dets/total*100);
+
+    document.getElementById('bar-p').style.width=pp+'%';
+    document.getElementById('pct-p').textContent=pp+'%';
+    document.getElementById('cnt-p').textContent=proms+' resp.';
+    document.getElementById('bar-n').style.width=np+'%';
+    document.getElementById('pct-n').textContent=np+'%';
+    document.getElementById('cnt-n').textContent=neus+' resp.';
+    document.getElementById('bar-d').style.width=dp+'%';
+    document.getElementById('pct-d').textContent=dp+'%';
+    document.getElementById('cnt-d').textContent=dets+' resp.';
+
+    // Metrics
+    document.getElementById('mt').textContent=total;
+    const avP=avg(rows,'produto');
+    const avA=avg(rows,'atend');
     const fmt=v=>v!=null?v.toFixed(1):'—';
-    document.getElementById('mp').textContent=fmt(avP);document.getElementById('ma').textContent=fmt(avA);
-    const setDi=(sfx,v,id1,id2,id3)=>{if(v==null){document.getElementById(id1).style.width='0%';document.getElementById(id2).textContent='—';document.getElementById(id3).textContent='sem dados';return;}document.getElementById(id1).style.width=(v/5*100)+'%';document.getElementById(id2).textContent=v.toFixed(1);document.getElementById(id3).textContent=Math.round(v/5*100)+'% aprovação';};
-    setDi('p',avP,'bip','avp','sbp');setDi('a',avA,'bia','ava','sba');
+    document.getElementById('mp').textContent=fmt(avP);
+    document.getElementById('ma').textContent=fmt(avA);
+
+    // Dimensions
+    const setDi=(sfx,v)=>{
+      if(v==null){
+        document.getElementById('bar-'+sfx).style.width='0%';
+        document.getElementById('avg-'+sfx).textContent='—';
+        document.getElementById('sub-'+sfx).textContent='sem dados';
+        return;
+      }
+      document.getElementById('bar-'+sfx).style.width=(v/5*100)+'%';
+      document.getElementById('avg-'+sfx).textContent=v.toFixed(1);
+      document.getElementById('sub-'+sfx).textContent=Math.round(v/5*100)+'% aprovação';
+    };
+    setDi('prod',avP);
+    setDi('atend',avA);
+
+    // Charts — destroy safely before recreating
+    if(tCh){tCh.destroy();tCh=null;}
+    if(dCh){dCh.destroy();dCh=null;}
 
     const weeks=byWeek(rows);
     const wL=weeks.map(([k])=>k.slice(5).replace('-','/'));
     const wN=weeks.map(([,r])=>calcNPS(r));
-    const dist=Array(11).fill(0);rows.forEach(r=>{if(r.nps>=0&&r.nps<=10)dist[r.nps]++;});
-    if(tCh)tCh.destroy();if(dCh)dCh.destroy();
+    const dist=Array(11).fill(0);
+    rows.forEach(r=>{if(r.nps>=0&&r.nps<=10)dist[r.nps]++;});
+
     const chOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
     const tickStyle={color:'rgba(255,255,255,.3)',font:{size:10}};
     const gridStyle={color:'rgba(255,255,255,.06)'};
-    tCh=new Chart(document.getElementById('ct').getContext('2d'),{type:'line',data:{labels:wL,datasets:[{label:'NPS',data:wN,borderColor:'#FABB15',backgroundColor:'rgba(250,187,21,.07)',borderWidth:2.5,pointBackgroundColor:'#FABB15',pointRadius:3,tension:.35,fill:true}]},options:{...chOpts,scales:{y:{min:-100,max:100,grid:gridStyle,ticks:tickStyle},x:{grid:{display:false},ticks:tickStyle}}}});
-    dCh=new Chart(document.getElementById('cd').getContext('2d'),{type:'bar',data:{labels:['0','1','2','3','4','5','6','7','8','9','10'],datasets:[{data:dist,backgroundColor:Array(11).fill(0).map((_,i)=>i<=6?'rgba(226,75,74,.7)':i<=8?'rgba(239,159,39,.7)':'rgba(82,164,71,.75)'),borderRadius:4}]},options:{...chOpts,scales:{y:{grid:gridStyle,ticks:tickStyle},x:{grid:{display:false},ticks:tickStyle}}}});
 
-    // COMPARATIVO
+    const tCtx=document.getElementById('chart-trend').getContext('2d');
+    tCh=new Chart(tCtx,{type:'line',data:{
+      labels:wL,
+      datasets:[{label:'NPS',data:wN,borderColor:'#FABB15',backgroundColor:'rgba(250,187,21,.07)',borderWidth:2.5,pointBackgroundColor:'#FABB15',pointRadius:3,tension:.35,fill:true}]
+    },options:{...chOpts,scales:{y:{min:-100,max:100,grid:gridStyle,ticks:tickStyle},x:{grid:{display:false},ticks:tickStyle}}}});
+
+    const dCtx=document.getElementById('chart-dist').getContext('2d');
+    dCh=new Chart(dCtx,{type:'bar',data:{
+      labels:['0','1','2','3','4','5','6','7','8','9','10'],
+      datasets:[{data:dist,backgroundColor:Array(11).fill(0).map((_,i)=>i<=6?'rgba(226,75,74,.7)':i<=8?'rgba(239,159,39,.7)':'rgba(82,164,71,.75)'),borderRadius:4}]
+    },options:{...chOpts,scales:{y:{grid:gridStyle,ticks:tickStyle},x:{grid:{display:false},ticks:tickStyle}}}});
+
+    // Comparativo (só na aba Rede)
     const cmpBlock=document.getElementById('cmp-block');
     if(tab==='rede'){
       cmpBlock.style.display='block';
@@ -632,18 +718,38 @@ async function loadDash(tab){
         const lp=Math.round(lr.filter(r=>r.nps>=9).length/lr.length*100);
         const lne=Math.round(lr.filter(r=>r.nps>=7&&r.nps<=8).length/lr.length*100);
         const ld=Math.round(lr.filter(r=>r.nps<=6).length/lr.length*100);
-        return`<div class="sc"><div class="sc-name"><i class="fa-solid ${icones[loja]}"></i>${nomes[loja]}</div><div class="sc-n" style="color:${lc}">${ln}</div><div class="sc-lbl" style="color:${lc}">${ll}</div><div class="mb"><div class="mb-lbl" style="color:#52A447">Promotores</div><div class="mb-t"><div class="mb-f" style="background:#52A447;width:${lp}%"></div></div><div class="mb-p" style="color:#52A447">${lp}%</div></div><div class="mb"><div class="mb-lbl" style="color:#EF9F27">Neutros</div><div class="mb-t"><div class="mb-f" style="background:#EF9F27;width:${lne}%"></div></div><div class="mb-p" style="color:#EF9F27">${lne}%</div></div><div class="mb"><div class="mb-lbl" style="color:#E24B4A">Detratores</div><div class="mb-t"><div class="mb-f" style="background:#E24B4A;width:${ld}%"></div></div><div class="mb-p" style="color:#E24B4A">${ld}%</div></div><div class="sc-meta">${lr.length} respostas</div></div>`;
+        return`<div class="sc">
+          <div class="sc-name"><i class="fa-solid ${icones[loja]}"></i>${nomes[loja]}</div>
+          <div class="sc-n" style="color:${lc}">${ln}</div>
+          <div class="sc-lbl" style="color:${lc}">${ll}</div>
+          <div class="mb"><div class="mb-lbl" style="color:#52A447">Promotores</div><div class="mb-t"><div class="mb-f" style="background:#52A447;width:${lp}%"></div></div><div class="mb-p" style="color:#52A447">${lp}%</div></div>
+          <div class="mb"><div class="mb-lbl" style="color:#EF9F27">Neutros</div><div class="mb-t"><div class="mb-f" style="background:#EF9F27;width:${lne}%"></div></div><div class="mb-p" style="color:#EF9F27">${lne}%</div></div>
+          <div class="mb"><div class="mb-lbl" style="color:#E24B4A">Detratores</div><div class="mb-t"><div class="mb-f" style="background:#E24B4A;width:${ld}%"></div></div><div class="mb-p" style="color:#E24B4A">${ld}%</div></div>
+          <div class="sc-meta">${lr.length} respostas</div>
+        </div>`;
       }).join('');
-    }else{cmpBlock.style.display='none';}
+    }else{
+      cmpBlock.style.display='none';
+    }
 
-    // COMENTÁRIOS
+    // Comentários
     const nLoja={'shopping-ilha':'Shopping da Ilha','rio-anil':'Rio Anil'};
     const wObs=rows.filter(r=>r.obs&&r.obs.trim()).slice(0,20);
-    document.getElementById('d-coms').innerHTML=!wObs.length?'<div class="msg-center" style="padding:24px">Nenhum comentário recebido ainda.</div>':wObs.map(r=>{
-      const cat=r.nps>=9?'bp':r.nps>=7?'bnt':'bd';
-      const dt=new Date(r.created_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit'});
-      return`<div class="ci"><div class="ci-meta"><span class="bn ${cat}">NPS ${r.nps}</span><span class="bl">${nLoja[r.unidade]||r.unidade}</span><span class="bd8">${dt}</span>${r.nome?`<span class="bl">${r.nome}</span>`:''}</div><div class="ci-txt">${r.obs}</div></div>`;
-    }).join('');
+    document.getElementById('d-coms').innerHTML=!wObs.length
+      ?'<div style="text-align:center;padding:24px;color:var(--muted);font-size:13px;">Nenhum comentário recebido ainda.</div>'
+      :wObs.map(r=>{
+        const cat=r.nps>=9?'bp':r.nps>=7?'bnt':'bd';
+        const dt=new Date(r.created_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit'});
+        return`<div class="ci">
+          <div class="ci-meta">
+            <span class="bn ${cat}">NPS ${r.nps}</span>
+            <span class="bl">${nLoja[r.unidade]||r.unidade}</span>
+            <span class="bd8">${dt}</span>
+            ${r.nome?`<span class="bl">${r.nome}</span>`:''}
+          </div>
+          <div class="ci-txt">${r.obs}</div>
+        </div>`;
+      }).join('');
 
   }catch(e){
     document.getElementById('d-loading').style.display='none';
@@ -651,6 +757,7 @@ async function loadDash(tab){
     document.getElementById('d-err').textContent='Erro: '+e.message;
   }
 }
+
 function switchTab(tab,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
@@ -666,28 +773,6 @@ function switchTab(tab,el){
   }
 }
 
-
-// --- MÁSCARA TELEFONE ---
-function maskPhone(el){
-  let v = el.value.replace(/\D/g,'').slice(0,11);
-  if(v.length <= 10){
-    v = v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
-  } else {
-    v = v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
-  }
-  el.value = v.replace(/-$/,'');
-}
-
-// Verifica se URL tem #admin para acesso direto ao painel
-if(window.location.hash === '#admin'){
-  show('sl');
-} else {
-  show('sf');
-}
-// Limpa o hash da URL sem recarregar
-if(window.location.hash){
-  history.replaceState(null, '', window.location.pathname + window.location.search);
-}
 // --- QR CODES ---
 function loadQRLib(cb){
   if(window.QRCode){cb();return;}
@@ -696,45 +781,49 @@ function loadQRLib(cb){
   s.onload=cb;
   document.head.appendChild(s);
 }
-
 function getBaseURL(){
   const inp=document.getElementById('base-url');
-  return inp&&inp.value.trim()?inp.value.trim():window.location.href.split('?')[0].split('#')[0];
+  const v=inp&&inp.value.trim();
+  return v||window.location.href.split('?')[0].split('#')[0];
 }
-
-function generateQR(canvasId, urlId, param){
+function generateQR(divId,urlId,param){
   const base=getBaseURL();
   const url=base+'?loja='+param;
   document.getElementById(urlId).textContent=url;
-  const canvas=document.getElementById(canvasId);
-  canvas.width=240;canvas.height=240;
-  new QRCode(canvas,{text:url,width:240,height:240,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.H});
+  const el=document.getElementById(divId);
+  el.innerHTML='';
+  new QRCode(el,{text:url,width:180,height:180,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
 }
-
 function generateAllQRs(){
   loadQRLib(()=>{
     generateQR('qr-ilha','url-ilha','shopping-ilha');
     generateQR('qr-anil','url-anil','rio-anil');
   });
 }
-
 function regenerateQRs(){
   document.getElementById('qr-ilha').innerHTML='';
   document.getElementById('qr-anil').innerHTML='';
-  generateAllQRs();
+  setTimeout(generateAllQRs,100);
 }
-
-function downloadQR(canvasId,filename){
-  const canvas=document.getElementById(canvasId);
-  // find the inner canvas generated by QRCode lib
-  const inner=canvas.querySelector?canvas.querySelector('canvas'):canvas;
-  const c=inner||canvas;
+function downloadQR(divId,filename){
+  const el=document.getElementById(divId);
+  const canvas=el.querySelector('canvas');
+  if(!canvas){alert('Aguarde o QR Code carregar.');return;}
   const link=document.createElement('a');
   link.download=filename+'.png';
-  link.href=c.toDataURL('image/png');
+  link.href=canvas.toDataURL('image/png');
   link.click();
 }
 
+// --- INIT ---
+if(window.location.hash==='#admin'){
+  show('sl');
+}else{
+  show('sf');
+}
+if(window.location.hash){
+  history.replaceState(null,'',window.location.pathname+window.location.search);
+}
 </script>
 </body>
 </html>
