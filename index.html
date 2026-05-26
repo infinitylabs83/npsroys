@@ -689,7 +689,7 @@ function downloadQR(divId,filename){
   // Bottom bar
   ctx.fillStyle='#FABB15';ctx.fillRect(0,520,500,60);
   ctx.fillStyle='#111';ctx.font='bold 16px Arial';
-  ctx.fillText('Sua opinião transforma a Roy's',250,557);
+  ctx.fillText('Sua opinião transforma a Roy\u0027s',250,557);
   const link=document.createElement('a');
   link.download=filename+'.png';
   link.href=canvas.toDataURL('image/png');
