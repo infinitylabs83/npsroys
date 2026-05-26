@@ -668,32 +668,45 @@ function downloadQR(divId,filename){
   const container=document.getElementById(divId);
   const img=container.querySelector('img');
   if(!img){alert('Aguarde o QR Code carregar.');return;}
-  const canvas=document.createElement('canvas');
-  canvas.width=500;canvas.height=580;
-  const ctx=canvas.getContext('2d');
-  // White background
-  ctx.fillStyle='#ffffff';ctx.fillRect(0,0,500,580);
-  // Red top bar
-  ctx.fillStyle='#EA1F27';ctx.fillRect(0,0,500,60);
-  ctx.fillStyle='#ffffff';ctx.font='bold 22px Arial';ctx.textAlign='center';
-  ctx.fillText("ROY'S SANDWICH SHOP",250,38);
-  // QR
-  ctx.drawImage(img,150,80,200,200);
-  // Text below
-  ctx.fillStyle='#111111';
-  ctx.font='bold 20px Arial';
-  ctx.fillText('Avalie sua visita!',250,318);
-  ctx.font='16px Arial';ctx.fillStyle='#555';
-  ctx.fillText('Escaneie o QR Code',250,345);
-  ctx.fillText('e compartilhe sua opinião 👑',250,368);
-  // Bottom bar
-  ctx.fillStyle='#FABB15';ctx.fillRect(0,520,500,60);
-  ctx.fillStyle='#111';ctx.font='bold 16px Arial';
-  ctx.fillText('Sua opinião transforma a Roy\u0027s',250,557);
-  const link=document.createElement('a');
-  link.download=filename+'.png';
-  link.href=canvas.toDataURL('image/png');
-  link.click();
+  // Fetch image as blob to bypass CORS restriction on canvas
+  fetch(img.src)
+    .then(r=>r.blob())
+    .then(blob=>{
+      const blobUrl=URL.createObjectURL(blob);
+      const tempImg=new Image();
+      tempImg.onload=()=>{
+        const canvas=document.createElement('canvas');
+        canvas.width=500;canvas.height=600;
+        const ctx=canvas.getContext('2d');
+        // White background
+        ctx.fillStyle='#ffffff';ctx.fillRect(0,0,500,600);
+        // Red top bar
+        ctx.fillStyle='#EA1F27';ctx.fillRect(0,0,500,70);
+        ctx.fillStyle='#ffffff';ctx.font='bold 22px Arial';ctx.textAlign='center';
+        ctx.fillText("ROY'S SANDWICH SHOP",250,45);
+        // QR centered
+        ctx.drawImage(tempImg,150,90,200,200);
+        // Text
+        ctx.fillStyle='#111111';ctx.font='bold 20px Arial';
+        ctx.fillText('Avalie sua visita!',250,330);
+        ctx.font='15px Arial';ctx.fillStyle='#666';
+        ctx.fillText('Escaneie o QR Code e compartilhe sua opiniao',250,358);
+        // Gold bottom bar
+        ctx.fillStyle='#FABB15';ctx.fillRect(0,530,500,70);
+        ctx.fillStyle='#111';ctx.font='bold 16px Arial';
+        ctx.fillText('Sua opiniao faz a Roy',250,572);
+        URL.revokeObjectURL(blobUrl);
+        const link=document.createElement('a');
+        link.download=filename+'.png';
+        link.href=canvas.toDataURL('image/png');
+        link.click();
+      };
+      tempImg.src=blobUrl;
+    })
+    .catch(()=>{
+      // Fallback: open QR image directly in new tab for manual save
+      window.open(img.src,'_blank');
+    });
 }
 
 if(window.location.hash==='#admin'){show('sl');}else{show('sf');}
