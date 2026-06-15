@@ -827,8 +827,20 @@ async function executeDelete(){
   document.getElementById('del-modal').style.display='none';
   const ids=Array.from(selectedIds);
   try{
-    // Delete each selected row
-    await Promise.all(ids.map(id=>sbFetch('/rest/v1/nps_respostas?id=eq.'+id,{method:'DELETE',headers:{'Prefer':'return=minimal','apikey':AK,'Authorization':'Bearer '+AK}})));
+    // Raw fetch for DELETE — bypass sbFetch to ensure headers are correct
+    await Promise.all(ids.map(id=>{
+      return fetch(SB+'/rest/v1/nps_respostas?id=eq.'+id, {
+        method: 'DELETE',
+        headers: {
+          'apikey': AK,
+          'Authorization': 'Bearer '+AK,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        }
+      }).then(r=>{
+        if(!r.ok) return r.text().then(t=>{throw new Error('HTTP '+r.status+': '+t);});
+      });
+    }));
     selectedIds.clear();
     loadHistorico();
   }catch(e){alert('Erro ao excluir: '+e.message);}
