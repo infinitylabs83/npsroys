@@ -608,7 +608,10 @@ async function submitForm(){
 
 // ── SUPABASE ──────────────────────────────────────
 async function sbFetch(path,opts={}){
-  const r=await fetch(SB+path,{headers:{'apikey':AK,'Authorization':'Bearer '+AK,'Content-Type':'application/json',...(opts.headers||{})},...opts});
+  const baseHeaders={'apikey':AK,'Authorization':'Bearer '+AK,'Content-Type':'application/json'};
+  const mergedHeaders={...baseHeaders,...(opts.headers||{})};
+  const {headers:_,...restOpts}=opts;
+  const r=await fetch(SB+path,{headers:mergedHeaders,...restOpts});
   if(!r.ok){const t=await r.text().catch(()=>'');throw new Error('HTTP '+r.status+': '+t);}
   if(r.status===204||opts.method==='DELETE')return null;
   return r.json();
@@ -825,7 +828,7 @@ async function executeDelete(){
   const ids=Array.from(selectedIds);
   try{
     // Delete each selected row
-    await Promise.all(ids.map(id=>sbFetch('/rest/v1/nps_respostas?id=eq.'+id,{method:'DELETE',headers:{'Prefer':'return=minimal'}})));
+    await Promise.all(ids.map(id=>sbFetch('/rest/v1/nps_respostas?id=eq.'+id,{method:'DELETE',headers:{'Prefer':'return=minimal','apikey':AK,'Authorization':'Bearer '+AK}})));
     selectedIds.clear();
     loadHistorico();
   }catch(e){alert('Erro ao excluir: '+e.message);}
